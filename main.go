@@ -6,9 +6,9 @@ import (
 	"strings"
 )
 
-var scores = map[string] int {
-	"Pepper": 20,
-	"Salt": 10,
+var scores = map[string]int{
+	"Pepper":  20,
+	"Salt":    10,
 	"Paprika": 30,
 }
 
@@ -20,11 +20,17 @@ func main() {
 
 func PlayerServer(w http.ResponseWriter, r *http.Request) {
 	name := strings.Split(r.URL.Path, "/")[2]
-	score := GETPlayers(name)
+	score := GetScore(name)
 	fmt.Fprint(w, score)
 }
 
-func GETPlayers(name string) int {
+func GetScore(name string) int {
 	return scores[name]
 }
 
+func IncreaseScore(name string) int {
+	score := GetScore(name)
+	score += 1
+	scores[name] = score
+	return score
+}

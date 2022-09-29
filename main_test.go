@@ -16,7 +16,7 @@ func TestGETPepper(t *testing.T) {
 	want := "20"
 
 	if got != want {
-		t.Errorf("got %d, want %d", got, want)
+		t.Errorf("got %q, want %q", got, want)
 	}
 }
 
@@ -30,31 +30,44 @@ func TestGETSalt(t *testing.T) {
 	want := "10"
 
 	if got != want {
-		t.Errorf("got %d, want %d", got, want)
+		t.Errorf("got %q, want %q", got, want)
 	}
 }
 func TestPlayers(t *testing.T) {
 
-	gotPepper := GETPlayers("Pepper")
+	gotPepper := GetScore("Pepper")
 	wantPepper := 20
 	if gotPepper != wantPepper {
 		t.Errorf("got %d, want %d", gotPepper, wantPepper)
 	}
 
-	gotSalt := GETPlayers("Salt")
+	gotSalt := GetScore("Salt")
 	wantSalt := 10
 	if gotSalt != wantSalt {
 		t.Errorf("got %d, want %d", gotSalt, wantSalt)
 	}
 
-	gotPaprika := GETPlayers("Paprika")
+	gotPaprika := GetScore("Paprika")
 	wantPaprika := 30
 	if gotPaprika != wantPaprika {
 		t.Errorf("got %d, want %d", gotPaprika, wantPaprika)
 	}
-	gotCurry := GETPlayers("Curry")
+	gotCurry := GetScore("Curry")
 	wantCurry := 0
 	if gotCurry != wantCurry {
 		t.Errorf("got %d, want %d", gotCurry, wantCurry)
 	}
+}
+func TestIncreaseScore(t *testing.T) {
+	wantPepper := 21
+	gotPepper := IncreaseScore("Pepper")
+	if gotPepper != wantPepper {
+		t.Errorf("got %d, want %d", gotPepper, wantPepper)
+	}
+	wantPepper = 22
+	gotPepper = IncreaseScore("Pepper")
+	if gotPepper != wantPepper {
+		t.Errorf("got %d, want %d", gotPepper, wantPepper)
+	}
+
 }
