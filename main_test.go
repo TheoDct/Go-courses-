@@ -37,15 +37,19 @@ func TestPlayers(t *testing.T) {
 
 	gotPepper := GETPlayers("Pepper")
 	wantPepper := 20
+	if gotPepper != wantPepper {
+		t.Errorf("got %q, want %q", gotPepper, wantPepper)
+	}
 
 	gotSalt := GETPlayers("Salt")
 	wantSalt := 10
-	if gotPepper != wantPepper {
-		t.Errorf("got %q, want %q", gotPepper, wantPepper)
-
-	}
-
 	if gotSalt != wantSalt {
 		t.Errorf("got %q, want %q", gotSalt, wantSalt)
+	}
+
+	gotPaprika := GETPlayers("Paprika")
+	wantPaprika := 30
+	if gotPaprika != wantPaprika {
+		t.Errorf("got %q, want %q", gotPaprika, wantPaprika)
 	}
 }

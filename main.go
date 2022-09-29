@@ -6,6 +6,12 @@ import (
 	"strings"
 )
 
+var scores = map[string] int {
+	"Pepper": 20,
+	"Salt": 10,
+	"Paprika": 30,
+}
+
 func main() {
 	http.HandleFunc("/players/", PlayerServer)
 	http.ListenAndServe(":8080", nil)
@@ -19,9 +25,6 @@ func PlayerServer(w http.ResponseWriter, r *http.Request) {
 }
 
 func GETPlayers(name string) int {
-	if name == "Pepper" {
-		return 20
-	} else {
-		return 10
-	}
+	return scores[name]
 }
+
