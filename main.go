@@ -1,0 +1,23 @@
+package main
+
+import (
+	"fmt"
+	"net/http"
+)
+
+func main() {
+	http.HandleFunc("/", handler)
+	http.ListenAndServe(":8080", nil)
+}
+
+func handler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "Hello, World!")
+}
+
+func PlayerServer(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "20")
+}
+
+func GETPlayers() string {
+	return "20"
+}
