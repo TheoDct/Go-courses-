@@ -58,10 +58,10 @@ func TestIncreasePepper(t *testing.T) {
 // 	got := response.Body.String()
 // 	want := "0"
 
-// 	if got != want {
-// 		t.Errorf("got %q, want %q", got, want)
-// 	}
-// }
+//		if got != want {
+//			t.Errorf("got %q, want %q", got, want)
+//		}
+//	}
 func TestPlayers(t *testing.T) {
 
 	gotPepper := GetScore("Pepper")
@@ -88,6 +88,7 @@ func TestPlayers(t *testing.T) {
 	}
 }
 func TestIncreaseScore(t *testing.T) {
+	ResetScores("Pepper")
 	wantPepper := 21
 	gotPepper := IncreaseScore("Pepper")
 	if gotPepper != wantPepper {
@@ -99,4 +100,17 @@ func TestIncreaseScore(t *testing.T) {
 		t.Errorf("got %d, want %d", gotPepper, wantPepper)
 	}
 
+}
+
+func TestResetScores(t *testing.T) {
+	wantPepper := 20
+	gotPepper := ResetScores("Pepper")
+	if gotPepper != wantPepper {
+		t.Errorf("got %d, want %d", gotPepper, wantPepper)
+	}
+	gotPaprika := ResetScores("Paprika")
+	wantPaprika := 30
+	if gotPaprika != wantPaprika {
+		t.Errorf("got %d, want %d", gotPaprika, wantPaprika)
+	}
 }

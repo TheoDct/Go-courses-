@@ -39,3 +39,5 @@ func IncreaseScore(name string) int {
 	scores[name] = score
 	return score
 }
+func ResetScores(name string)int{
+}
