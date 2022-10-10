@@ -33,6 +33,21 @@ func TestGETSalt(t *testing.T) {
 		t.Errorf("got %q, want %q", got, want)
 	}
 }
+
+// this test has to fail since we are testing a random value
+func TestGETRandom(t *testing.T) {
+	request, _ := http.NewRequest(http.MethodGet, "/players/beach", nil)
+	response := httptest.NewRecorder()
+
+	PlayerServer(response, request)
+
+	got := response.Body.String()
+	want := "15"
+
+	if got != want {
+		t.Errorf("got %q, want %q", got, want)
+	}
+}
 func TestPlayers(t *testing.T) {
 
 	gotPepper := GetScore("Pepper")
