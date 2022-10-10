@@ -20,8 +20,13 @@ func main() {
 
 func PlayerServer(w http.ResponseWriter, r *http.Request) {
 	name := strings.Split(r.URL.Path, "/")[2]
-	score := GetScore(name)
-	fmt.Fprint(w, score)
+	
+	if r.Method == http.MethodGet {		
+		score := GetScore(name)
+		fmt.Fprint(w, score)
+	} else {
+		IncreaseScore(name)
+	}
 }
 
 func GetScore(name string) int {

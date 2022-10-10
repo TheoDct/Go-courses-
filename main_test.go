@@ -34,20 +34,34 @@ func TestGETSalt(t *testing.T) {
 	}
 }
 
-// this test has to fail since we are testing a random value
-func TestGETRandom(t *testing.T) {
-	request, _ := http.NewRequest(http.MethodGet, "/players/beach", nil)
+func TestIncreasePepper(t *testing.T) {
+	want := GetScore("Pepper")
+	request, _ := http.NewRequest(http.MethodPost, "/players/Pepper", nil)
 	response := httptest.NewRecorder()
 
 	PlayerServer(response, request)
 
-	got := response.Body.String()
-	want := "15"
+	got := GetScore("Pepper")
 
 	if got != want {
-		t.Errorf("got %q, want %q", got, want)
+		t.Errorf("got %d, want %d", got, want)
 	}
 }
+
+// this test has to fail since we are testing a random value
+// func TestGETRandom(t *testing.T) {
+// 	request, _ := http.NewRequest(http.MethodGet, "/players/beach", nil)
+// 	response := httptest.NewRecorder()
+
+// 	PlayerServer(response, request)
+
+// 	got := response.Body.String()
+// 	want := "0"
+
+// 	if got != want {
+// 		t.Errorf("got %q, want %q", got, want)
+// 	}
+// }
 func TestPlayers(t *testing.T) {
 
 	gotPepper := GetScore("Pepper")
